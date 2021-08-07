@@ -71,6 +71,7 @@ time {
 .send-message {
   font-size: 40px;
   border: none;
+  background-color:#fff;
 }
 .side-bar-container {
     position: fixed;

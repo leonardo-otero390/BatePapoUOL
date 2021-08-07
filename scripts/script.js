@@ -11,10 +11,15 @@
 // }
 // enterRoom();
 let messages;
+let messagesCounter;
 function getMessages(response) {
     messages = response.data;
+    messagesCounter = 0;
     document.querySelector(".chat-box" ).innerHTML = "";
     renderMessages();
+    messagesCounter.toString();
+    let lastMessage = document.querySelector("#msg-id-"+messagesCounter);
+    lastMessage.scrollIntoView();
 }
 function loadMessages() {
     
@@ -33,12 +38,13 @@ function renderMessages() {
     } else if (msgType === "message") {
         destinyText = "para";
     } else destinyText = "resevadamente para";
-    document.querySelector(".chat-box" ).innerHTML += `<div class="${msgType} chat-status">
+    document.querySelector(".chat-box" ).innerHTML += `<div class="${msgType} chat-status" id ="msg-id-${i}">
     <p class="message-content">
       <time>(${messages[i].time})</time>
      <strong> ${messages[i].from}</strong> ${destinyText} <strong>${messages[i].to}</strong> ${messages[i].text}
     </p>
   </div>`;
+  messagesCounter = i;
 }
 }
 loadMessages();
