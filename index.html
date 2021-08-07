@@ -2,15 +2,115 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Title</title>
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Chat online mais famoso do Brasil | Bate Papo UOL</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="shortcut icon" href="https://www.google.com/s2/favicons?domain=https://batepapo.uol.com.br/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Style+Script&display=swap"
+    rel="stylesheet" />
 </head>
+
 <body>
-  
+  <header class="top-bar">
+    <img src="/images/logo.png" alt="logo" class="logo" />
+    <ion-icon name="people-sharp"></ion-icon>
+  </header>
+  <main class="chat-box">
+    <div class="user-entry chat-status">
+      <p class="message-content">
+        <time>(00:00:00)</time>
+        João entra na sala...
+      </p>
+    </div>
+    <div class="message-room chat-status">
+      <p class="message-content">
+        <time>(00:00:00)</time>
+        João entra na sala...
+      </p>
+    </div>
+    <div class="private-message chat-status">
+      <p class="message-content">
+        <time>(00:00:00)</time>
+        João entra na sala...
+      </p>
+    </div>
+    <div class="user-exit chat-status">
+      <p class="message-content">
+        <time>(00:00:00)</time>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+        voluptates, debitis et sit minus in nemo nulla explicabo provident
+        necessitatibus mollitia, assumenda doloremque, beatae ipsam optio
+        dolores consequatur. Necessitatibus, velit.
+      </p>
+    </div>
+  </main>
+  <div class="message-box">
+    <input type="text" class="message" placeholder="Escreva aqui..." />
+    <button class="send-message">
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </button>
+  </div>
+
+  <div class="side-bar-container hidden">
+    <div class="side-bar">
+      <div class="side-selection">
+        <strong>Escolha um contato <br />
+          para enviar mensagem:</strong>
+      </div>
+      <div class="users-list">
+        <div class="user-option">
+          <div class="user">
+            <ion-icon name="people-sharp"></ion-icon>
+            Todos
+          </div>
+          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+        </div>
+        <div class="user-option">
+          <div class="user">
+            <ion-icon name="person-circle-sharp"></ion-icon>
+            John
+          </div>
+          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+        </div>
+        <div class="user-option">
+          <div class="user">
+            <ion-icon name="person-circle-sharp"></ion-icon>
+            John
+          </div>
+          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+        </div>
+        <div class="visibility">
+          <div class="visibility-title">
+            <strong>Escolha a visibilidade:</strong>
+          </div>
+          <div class="visibility-options">
+            <div class="visibility-option">
+              <div>
+                <ion-icon name="lock-open-sharp"></ion-icon>
+                Público
+              </div>
+              <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+            </div>
+            <div class="visibility-option">
+              <div>
+                <ion-icon name="lock-closed-sharp"></ion-icon>
+                Privado
+              </div>
+              <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
