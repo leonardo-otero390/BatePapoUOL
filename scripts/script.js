@@ -8,8 +8,9 @@ function enterRoom() {
     const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants', { name: clientName });
 
     request.catch(enterRoom);
+    request.then(setInterval(keepConnection, 5000));
 }
-function keepConnection (){
+function keepConnection() {
     axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants', { name: clientName });
 }
 function getMessages(response) {
@@ -50,7 +51,21 @@ function renderMessages() {
 
     }
 }
+function sendMessage() {
+    let message = document.querySelector(".type-message").value;
+   const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages', {
+        from:clientName,
+        to:"Todos",
+        text:message,
+        type:"message"
+    });
+    
+    request.then(loadMessages);
+    request.catch(function (){
+        window.location.reload();
+    });
+    document.querySelector(".type-message").value = "";
+}
 enterRoom();
 loadMessages();
-setInterval(keepConnection, 5000);
 setInterval(loadMessages, 3000);

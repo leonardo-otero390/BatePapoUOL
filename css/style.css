@@ -68,6 +68,9 @@ time {
   font-family: "Roboto", sans-serif;
   font-style: italic;
 }
+.type-message:focus{
+  outline: none;
+}
 .send-message {
   font-size: 40px;
   border: none;
