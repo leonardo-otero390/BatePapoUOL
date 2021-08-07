@@ -13,15 +13,17 @@
 let messages;
 function getMessages(response) {
     messages = response.data;
-    renderMessage();
+    document.querySelector(".chat-box" ).innerHTML = "";
+    renderMessages();
 }
 function loadMessages() {
+    
     const promise = axios.get(
         "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages"
     );
-    return promise.then(getMessages);
+    promise.then(getMessages);
 }
-function renderMessage() {
+function renderMessages() {
     for (let i = 0; i<messages.length; i++) {
     let msgType = messages[i].type;
     let destinyText;
@@ -40,3 +42,5 @@ function renderMessage() {
 }
 }
 loadMessages();
+setInterval(loadMessages,3000);
+
