@@ -9,7 +9,9 @@ function enterRoom() {
 
     request.catch(enterRoom);
 }
-
+function keepConnection (){
+    axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants', { name: clientName });
+}
 function getMessages(response) {
     messages = response.data;
     document.querySelector(".chat-box").innerHTML = "";
@@ -50,4 +52,5 @@ function renderMessages() {
 }
 enterRoom();
 loadMessages();
+setInterval(keepConnection, 5000);
 setInterval(loadMessages, 3000);
