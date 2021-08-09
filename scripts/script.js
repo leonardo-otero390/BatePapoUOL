@@ -1,3 +1,8 @@
+const URL_API_UOL = {
+    participants: "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants",
+    status: "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/status",
+    messages: "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages"
+}
 let clientName, messages, messagesCounter;
 function enterRoom() {
     if (clientName !== undefined) {
@@ -5,13 +10,13 @@ function enterRoom() {
     } else if (clientName === undefined) {
         clientName = prompt("Diga seu nome");
     }
-    const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants', { name: clientName });
+    const request = axios.post(URL_API_UOL.participants, { name: clientName });
 
     request.catch(enterRoom);
     request.then(setInterval(keepConnection, 5000));
 }
 function keepConnection() {
-    axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants', { name: clientName });
+    axios.post(URL_API_UOL.status, { name: clientName });
 }
 function getMessages(response) {
     messages = response.data;
@@ -24,7 +29,7 @@ function getMessages(response) {
 function loadMessages() {
 
     const promise = axios.get(
-        "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages"
+        URL_API_UOL.messages
     );
     promise.then(getMessages);
 }
@@ -53,18 +58,28 @@ function renderMessages() {
 }
 function sendMessage() {
     let message = document.querySelector(".type-message").value;
-   const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages', {
-        from:clientName,
-        to:"Todos",
-        text:message,
-        type:"message"
+    const request = axios.post(URL_API_UOL.messages, {
+        from: clientName,
+        to: "Todos",
+        text: message,
+        type: "message"
     });
-    
+
     request.then(loadMessages);
-    request.catch(function (){
+    request.catch(function () {
         window.location.reload();
     });
     document.querySelector(".type-message").value = "";
+}
+function showSidebar() {
+    const element = document.querySelectorAll(".side-bar");
+    element[0].classList.remove("hidden");
+    element[1].classList.remove("hidden");
+}
+function hideSidebar() {
+    const element = document.querySelectorAll(".side-bar");
+    element[0].classList.add("hidden");
+    element[1].classList.add("hidden");
 }
 enterRoom();
 loadMessages();

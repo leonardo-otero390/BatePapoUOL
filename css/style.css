@@ -13,6 +13,11 @@ body {
   padding: 0 16px;
   margin-bottom: 16px;
 }
+.participants{
+  background-color: inherit;
+  border: none;
+  font-size:56px;
+}
 .logo {
   width: 75px;
 }
@@ -76,7 +81,7 @@ time {
   border: none;
   background-color:#fff;
 }
-.side-bar-container {
+.side-bar.background {
     position: fixed;
     top: 0;
     left: 0;
@@ -89,7 +94,7 @@ time {
   background-color:#fff;
   width: 259px;
   height:100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
 }
@@ -124,6 +129,6 @@ text-align: center;
 .hidden{
     opacity: 0;
 }
-.side-bar-container.hidden{
+.side-bar.hidden{
     display: none;
 }

@@ -19,7 +19,9 @@
 <body>
   <header class="top-bar">
     <img src="/images/logo.png" alt="logo" class="logo" />
-    <ion-icon name="people-sharp"></ion-icon>
+    <button class="participants" onclick="showSidebar()"> 
+      <ion-icon name="people-sharp"></ion-icon> 
+    </button>
   </header>
   <main class="chat-box">
     
@@ -31,8 +33,9 @@
     </button>
   </div>
 
-  <div class="side-bar-container hidden">
-    <div class="side-bar">
+  <div class="side-bar background hidden" onclick="hideSidebar()">
+  </div>
+    <div class="side-bar hidden">
       <div class="side-selection">
         <strong>Escolha um contato <br />
           para enviar mensagem:</strong>
