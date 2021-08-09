@@ -9,16 +9,20 @@ let userRecipient = "Todos";
 let visibility = "message";
 let alertVisibility = "";
 
+function startChat (){
+    document.querySelector(".entry-screen").classList.add("hidden");
+    setInterval(keepConnection, 5 * SECONDS);
+    getMessages();
+    getParticipants();
+    setInterval(getMessages, 3 * SECONDS);
+    setInterval(getParticipants, 10 * SECONDS);
+}
 function enterRoom() {
-    if (clientName !== undefined) {
-        clientName = prompt("Este nome já está em uso, por favor escolha outro:");
-    } else if (clientName === undefined) {
-        clientName = prompt("Diga seu nome");
-    }
+    clientName = document.querySelector(".type-name").value;
     const request = axios.post(URL_API_UOL.participants, { name: clientName });
-
-    request.catch(enterRoom);
-    request.then(setInterval(keepConnection, 5 * SECONDS));
+    document.querySelector(".type-name").value = "";
+    request.catch(function () {alert("O nome já está em uso por favor ecolha outro")});
+    request.then(startChat);
 }
 function keepConnection() {
     axios.post(URL_API_UOL.status, { name: clientName });
@@ -76,6 +80,10 @@ function sendMessage() {
     request.then(getMessages);
     request.catch(treatSendError);
     document.querySelector(".type-message").value = "";
+    userRecipient = "Todos";
+    visibility = "message";
+    document.querySelector(".alert-send-message").innerHTML = "";
+
 }
 function showSidebar() {
     const element = document.querySelectorAll(".side-bar");
@@ -136,8 +144,3 @@ function getParticipants() {
     const promise = axios.get(URL_API_UOL.participants);
     promise.then(loadParticipants);
 }
-enterRoom();
-getMessages();
-getParticipants();
-setInterval(getMessages, 3 * SECONDS);
-setInterval(getParticipants, 10 * SECONDS);
