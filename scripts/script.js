@@ -36,6 +36,11 @@ function startChat() {
     setInterval(getMessages, 3 * SECONDS);
     setInterval(getParticipants, 10 * SECONDS);
 }
+function hideLoading() {
+    document.querySelector(".loading-img").classList.add("hidden");
+    document.querySelector(".type-name").classList.remove("hidden");
+    document.querySelector("button").classList.remove("hidden");
+}
 function showLoading() {
     document.querySelector(".hidden").classList.remove("hidden");
     document.querySelector(".type-name").classList.add("hidden");
@@ -46,7 +51,10 @@ function enterRoom() {
     clientName = document.querySelector(".type-name").value;
     const request = axios.post(URL_API_UOL.participants, { name: clientName });
     document.querySelector(".type-name").value = "";
-    request.catch(function () { alert("O nome já está em uso por favor ecolha outro") });
+    request.catch(function () {
+        alert("O nome já está em uso por favor ecolha outro")
+        hideLoading();
+    });
     request.then(startChat);
 }
 function keepConnection() {
