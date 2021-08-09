@@ -28,6 +28,9 @@ function startChat() {
     setInterval(getParticipants, 10 * SECONDS);
 }
 function enterRoom() {
+    document.querySelector(".hidden").classList.remove("hidden");
+    document.querySelector(".type-name").classList.add("hidden");
+    document.querySelector("button").classList.add("hidden");
     clientName = document.querySelector(".type-name").value;
     const request = axios.post(URL_API_UOL.participants, { name: clientName });
     document.querySelector(".type-name").value = "";
