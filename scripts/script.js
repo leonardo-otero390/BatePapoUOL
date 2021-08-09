@@ -10,6 +10,15 @@ let userRecipient = "Todos";
 let visibility = "message";
 let alertVisibility = "";
 
+function pressEnterToEnterRoom() {
+    const input = document.querySelector(".type-name");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === KEY_ENTER_CODE) {
+            event.preventDefault();
+            enterRoom();
+        }
+    });
+}
 function pressEnterToSendMessage() {
     const input = document.querySelector(".type-message");
     input.addEventListener("keyup", function (event) {
@@ -155,4 +164,5 @@ function getParticipants() {
     const promise = axios.get(URL_API_UOL.participants);
     promise.then(loadParticipants);
 }
+pressEnterToEnterRoom();
 pressEnterToSendMessage();
