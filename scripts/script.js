@@ -3,13 +3,23 @@ const URL_API_UOL = {
     status: "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/status",
     messages: "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages"
 }
+const KEY_ENTER_CODE = 13;
 const SECONDS = 1000;
 let clientName, messages, messagesCounter, participants;
 let userRecipient = "Todos";
 let visibility = "message";
 let alertVisibility = "";
 
-function startChat (){
+function pressEnterToSendMessage() {
+    const input = document.querySelector(".type-message");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === KEY_ENTER_CODE) {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+}
+function startChat() {
     document.querySelector(".entry-screen").classList.add("hidden");
     setInterval(keepConnection, 5 * SECONDS);
     getMessages();
@@ -21,7 +31,7 @@ function enterRoom() {
     clientName = document.querySelector(".type-name").value;
     const request = axios.post(URL_API_UOL.participants, { name: clientName });
     document.querySelector(".type-name").value = "";
-    request.catch(function () {alert("O nome já está em uso por favor ecolha outro")});
+    request.catch(function () { alert("O nome já está em uso por favor ecolha outro") });
     request.then(startChat);
 }
 function keepConnection() {
@@ -63,13 +73,9 @@ function renderMessages() {
 
     }
 }
-function treatSendError(error) {
-    console.log(error.message);
-    //window.location.reload();
-}
+
 function sendMessage() {
     let message = document.querySelector(".type-message").value;
-    console.log(visibility);
     const request = axios.post(URL_API_UOL.messages, {
         from: clientName,
         to: userRecipient,
@@ -78,7 +84,9 @@ function sendMessage() {
     });
 
     request.then(getMessages);
-    request.catch(treatSendError);
+    request.catch(function () {
+        window.location.reload();
+    });
     document.querySelector(".type-message").value = "";
     userRecipient = "Todos";
     visibility = "message";
@@ -95,7 +103,7 @@ function hideSidebar() {
     element[0].classList.add("hidden");
     element[1].classList.add("hidden");
 }
-function alertText () {
+function alertText() {
     if (visibility === "private_message") {
         alertVisibility = "(reservadamente)";
     } else alertVisibility = "";
@@ -144,3 +152,4 @@ function getParticipants() {
     const promise = axios.get(URL_API_UOL.participants);
     promise.then(loadParticipants);
 }
+pressEnterToSendMessage();

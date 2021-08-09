@@ -68,7 +68,7 @@ body {
   height: calc(100vh - 181px);
   background-color: #f3f3f3;
   font-size: 14px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .chat-status {
   display: flex;
