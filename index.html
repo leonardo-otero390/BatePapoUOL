@@ -18,19 +18,22 @@
 
 <body>
   <header class="top-bar">
-    <img src="/images/logo.png" alt="logo" class="logo" />
+    <img src="images/logo.png" alt="logo" class="logo" />
     <button class="participants" onclick="showSidebar()"> 
       <ion-icon name="people-sharp"></ion-icon> 
     </button>
   </header>
   <main class="chat-box">
-    
+    <!-- Messages enter by javascript-->
   </main>
   <div class="message-box">
-    <input type="text" class="type-message" placeholder="Escreva aqui..." />
-    <button class="send-message" onclick="sendMessage()">
-      <ion-icon name="paper-plane-outline"></ion-icon>
-    </button>
+    <div>
+      <input type="text" class="type-message" placeholder="Escreva aqui..." />
+      <button class="send-message" onclick="sendMessage()">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+      </button>
+    </div>
+    <span class="alert-send-message"></span>
   </div>
 
   <div class="side-bar background hidden" onclick="hideSidebar()">
@@ -41,45 +44,26 @@
           para enviar mensagem:</strong>
       </div>
       <div class="users-list">
-        <div class="user-option">
-          <div class="user">
-            <ion-icon name="people-sharp"></ion-icon>
-            Todos
-          </div>
-          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-        </div>
-        <div class="user-option">
-          <div class="user">
-            <ion-icon name="person-circle-sharp"></ion-icon>
-            John
-          </div>
-          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-        </div>
-        <div class="user-option">
-          <div class="user">
-            <ion-icon name="person-circle-sharp"></ion-icon>
-            John
-          </div>
-          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-        </div>
+       <!--Users enter by javascript--> 
+      </div>
         <div class="visibility">
           <div class="visibility-title">
             <strong>Escolha a visibilidade:</strong>
           </div>
           <div class="visibility-options">
-            <div class="visibility-option">
+            <div class="visibility-option message" onclick="selectVisibility(this)">
               <div>
                 <ion-icon name="lock-open-sharp"></ion-icon>
                 Público
               </div>
-              <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+              <ion-icon name="checkmark-sharp" class="check"></ion-icon>
             </div>
-            <div class="visibility-option">
+            <div class="visibility-option private_message" onclick="selectVisibility(this)">
               <div>
                 <ion-icon name="lock-closed-sharp"></ion-icon>
                 Privado
               </div>
-              <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+              <ion-icon name="checkmark-sharp" class="check"></ion-icon>
             </div>
           </div>
         </div>
@@ -89,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/scripts/script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
