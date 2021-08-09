@@ -36,10 +36,13 @@ function startChat() {
     setInterval(getMessages, 3 * SECONDS);
     setInterval(getParticipants, 10 * SECONDS);
 }
-function enterRoom() {
+function showLoading() {
     document.querySelector(".hidden").classList.remove("hidden");
     document.querySelector(".type-name").classList.add("hidden");
     document.querySelector("button").classList.add("hidden");
+}
+function enterRoom() {
+    showLoading();
     clientName = document.querySelector(".type-name").value;
     const request = axios.post(URL_API_UOL.participants, { name: clientName });
     document.querySelector(".type-name").value = "";
@@ -58,15 +61,15 @@ function loadMessages(response) {
     lastMessage.scrollIntoView();
 }
 function getMessages() {
-
     const promise = axios.get(URL_API_UOL.messages);
     promise.then(loadMessages);
 }
 function renderMessages() {
+    let msgType, destinyText;
     for (let i = 0; i < messages.length; i++) {
         messagesCounter = i;
-        let msgType = messages[i].type;
-        let destinyText;
+        msgType = messages[i].type;
+        destinyText;
         if (msgType === "status") {
             destinyText = "";
             messages[i].to = "";
@@ -82,12 +85,11 @@ function renderMessages() {
      <strong> ${messages[i].from}</strong> ${destinyText} <strong>${messages[i].to}</strong> ${messages[i].text}
     </p>
   </div>`;
-
     }
 }
 
 function sendMessage() {
-    let message = document.querySelector(".type-message").value;
+    const message = document.querySelector(".type-message").value;
     const request = axios.post(URL_API_UOL.messages, {
         from: clientName,
         to: userRecipient,
